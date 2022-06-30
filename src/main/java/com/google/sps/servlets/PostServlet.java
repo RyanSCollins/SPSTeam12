@@ -8,6 +8,15 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/post")
 public class PostServlet extends HttpServlet {
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    String typeOfPet = request.getParameter("typeofPet");
+    String breed = request.getParameter("breed");
+    String age = request.getParameter("age");
+    String location = request.getParameter("location");
+    String contactInfo = request.getParameter("contactInfo");
+    
+  }
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
