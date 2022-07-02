@@ -34,6 +34,7 @@ public class PetPostServlet extends HttpServlet {
     String location = Jsoup.clean(request.getParameter(LOCATION), Safelist.none());
     String contactInfo = Jsoup.clean(request.getParameter(CONTACT_INFO), Safelist.none()); 
 
+    //Save the information in the database
     Datastore datastore = DatastoreOptions.getDefaultInstance().getService();
     KeyFactory keyFactory = datastore.newKeyFactory().setKind(POST);
     FullEntity contacEntity = 
