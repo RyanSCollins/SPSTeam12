@@ -17,6 +17,8 @@ import org.jsoup.safety.Safelist;
 
 @WebServlet("/pet/post")
 public class PetPostServlet extends HttpServlet {
+  //Constants for use across methods
+  public static final String POST = "post";
   public static final String PET_TYPE = "petType";
   public static final String BREED = "breed";
   public static final String AGE = "age";
@@ -25,11 +27,24 @@ public class PetPostServlet extends HttpServlet {
 
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    String typeOfPet = Jsoup.clean(request.getParameter(PET_TYPE), Safelist.none()) ;
+    //Information requested in the form
+    String petType = Jsoup.clean(request.getParameter(PET_TYPE), Safelist.none()) ;
     String breed = Jsoup.clean(request.getParameter(BREED), Safelist.none());
     String age = Jsoup.clean(request.getParameter(AGE), Safelist.none());
     String location = Jsoup.clean(request.getParameter(LOCATION), Safelist.none());
     String contactInfo = Jsoup.clean(request.getParameter(CONTACT_INFO), Safelist.none()); 
+
+    Datastore datastore = DatastoreOptions.getDefaultInstance().getService();
+    KeyFactory keyFactory = datastore.newKeyFactory().setKind(POST);
+    FullEntity contacEntity = 
+    Entity.newBuilder(keyFactory.newKey()) 
+        .set(PET_TYPE, petType)
+        .set(BREED, breed)
+        .set(AGE, age)
+        .set(LOCATION, location)
+        .set(CONTACT_INFO, contactInfo)
+        .build();
+    datastore.put(contacEntity);
   }
 
   @Override
