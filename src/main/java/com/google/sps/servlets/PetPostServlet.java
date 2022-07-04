@@ -54,6 +54,9 @@ public class PetPostServlet extends HttpServlet {
         .set(IMAGE, blobData)
         .build();
     datastore.put(contacEntity);
+
+    //Redirect to main page
+    response.sendRedirect("https://summer22-sps-23.appspot.com/");
   }
 
   @Override
