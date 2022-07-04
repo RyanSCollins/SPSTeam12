@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.cloud.datastore.Entity;
 import com.google.cloud.datastore.FullEntity;
+import com.google.cloud.datastore.Blob;
 import com.google.cloud.datastore.Datastore;
 import com.google.cloud.datastore.DatastoreOptions;
 import com.google.cloud.datastore.KeyFactory;
@@ -24,6 +25,7 @@ public class PetPostServlet extends HttpServlet {
   public static final String AGE = "age";
   public static final String LOCATION = "location";
   public static final String CONTACT_INFO = "contactInfo";
+  public static final String IMAGE = "image";
 
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -33,6 +35,11 @@ public class PetPostServlet extends HttpServlet {
     String age = Jsoup.clean(request.getParameter(AGE), Safelist.none());
     String location = Jsoup.clean(request.getParameter(LOCATION), Safelist.none());
     String contactInfo = Jsoup.clean(request.getParameter(CONTACT_INFO), Safelist.none()); 
+    String image = Jsoup.clean(request.getParameter(IMAGE), Safelist.none()); 
+
+    //Convert image to blob data
+    byte[] byteData = image.getBytes();
+    Blob blobData = Blob.copyFrom(byteData);
 
     //Save the information in the database
     Datastore datastore = DatastoreOptions.getDefaultInstance().getService();
@@ -44,6 +51,7 @@ public class PetPostServlet extends HttpServlet {
         .set(AGE, age)
         .set(LOCATION, location)
         .set(CONTACT_INFO, contactInfo)
+        .set(IMAGE, blobData)
         .build();
     datastore.put(contacEntity);
   }
