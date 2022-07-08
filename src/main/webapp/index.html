@@ -1,55 +1,124 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <title>TEAM-23 PROJECT</title>
-    <link rel="stylesheet" href="style.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
-    <script src="script.js"></script>
-  </head>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link href="styles.css" rel="stylesheet"> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" >
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+    <title>Pet Connect</title>
+    <style>
+        section{
+            padding: 60px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-md navbar-dark bg-primary"> 
+        <div class="container-xxl">
+            <a href="#intro" class="navbar-brand">
+                <span class="fw-bold text-white h2">
+                    Pet Connect
+                    <i class="bi bi-house-heart-fill text-white"></i>
+                </span>
+            </a>
+            <!-- toggle button for mobile nav -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#main-nav" aria-controls="main-nav" aria-expanded="false"
+            aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- navbar links -->
+            <div class="collapse navbar-collapse justify-content-end align-center" id="main-nav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link text-white fw-bold" href="#ABOUT">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="client-index.html">List a Pet</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#LIST_PET_FORM">Find a Pet</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
   <body>
-    <h1><img src="dog.jpeg" alt="Dog" style="width: 5%;height: 10%;float: left;padding-left: 300px"><img src="dog.jpeg" alt="Dog" style="width: 5%;height: 10%;float: right;padding-right: 300px">Connect-A-Pet</h1>
+      <!-- picture and intro -->
+    <section class="about bg-light ms-5">
+      <div class="container-lg row">
+          
+          <div class="col-8 justify-content-top">
+              <!--Top text-->
+              <div class="text-center">
+                  <div class="ps-5">
+                      <h4 class="ps-5 display-3 text-dark fw-bold">List Your Pet!</h4>
+                      <p class="ps-5 h3 my-4 text-primary fw-bold">Help your pet find a loving new home today.</p>
+                  </div>
+              </div> 
 
-    <div class="left">
-      <div class="input">
-        <label>Type of Pet:</label>
-        <textarea id="textarea" rows="1"></textarea>
-      </div>
-
-      <div class="input">
-        <label>Breed:</label>
-        <textarea id="textarea2" rows="1"></textarea>
-      </div>
-
-      <div class="input">
-        <label>Age:</label>
-        <textarea id="textarea3" rows="1"></textarea>
-      </div>
-
-      <div class="input">
-        <label>Location:</label>
-        <textarea id="textarea4" rows="1"></textarea>
-      </div>
-
-      <div class="input">
-        <label>Upload a Picture:</label>
-        <textarea id="textarea5" rows="1"></textarea>
-      </div>
-    </div>
-
-    <div class="box">
-      <h2 style="padding-left: 10px;">Contact Information:</h2>
-    </div>
-
-
-    <input class="submit-button" type="submit" value="Post">
-
-    
-   
-
-
+        <!--Sumbitting the form-->
+              <div class="container ms-5">
+                <form class="form-horizontal" action="/">
+                  <div class="row">
+                    <div class="col">
+                    <div class="form-group">
+                      <label class="control-label h4" for="typepet">Type of Pet:</label>
+                        <input type="typepet" class="form-control border border-primary" id="typepet" name="typepet">
+                    </div>
+                    <div class="form-group">
+                      <label class="control-label h4" for="breed">Breed:</label>
+                        <input type="breed" class="form-control border border-primary" id="breed" name="breed">
+                    </div>
+                    <div class="form-group">
+                      <label class="control-label h4" for="age">Age:</label>       
+                        <input type="age" class="form-control border border-primary" id="age" name="age">
+                    </div>
+                    <div class="form-group">
+                      <label class="control-label h4" for="location">Location:</label>      
+                        <input type="location " class="form-control border border-primary" id="location" name="location">
+                    </div>
+                    <div class="form-group">
+                      <label class="control-label h4" for="pic">Upload a Picture:</label>
+                        <input type="pic" class="form-control border border-primary" id="pic" name="pic">
+                    </div>
+                    <div class="form-group">        
+                      <div class="col-sm-offset-2 h4 pt-5">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                      </div>
+                    </div>
+                    </div>
+                    <div class="col ms-5 "> 
+                      <div class="border border-primary border-3 rounded ps-2 pt-2 pb-5">
+                        <div class="h2 mt-4">Contact Info:</div>
+                        <div class="form-group">
+                        <div class="form-floating mb-3 me-3 mt-3">
+                          <input type="text" class="form-control" id="name" placeholder="Enter First and Last Name" name="name">
+                          <label for="name">Name</label>
+                        </div>
+                        <div class="form-floating mt-3 me-3 mb-3">
+                          <input type="text" class="form-control" id="email" placeholder="Enter Email" name="email">
+                          <label for="email">Email</label>
+                        </div>
+                        <div class="form-floating mt-3 me-3 mb-4">
+                          <input type="tel" class="form-control" id="phone" placeholder="Enter Phone Number" name="phone">
+                          <label for="phone">Phone Number</label>
+                        </div>
+                      </div>
+                    </div>
+                    </div>
+                  </div>
+                  </form>
+                </div>
+          </div>
+        </div>
+        </section>
+   </div>
+   </div>
   </body>
 </html>
