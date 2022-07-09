@@ -64,7 +64,8 @@ public class PetPostServlet extends HttpServlet {
         .build();
     datastore.put(postEntity);
 
-    //Redirect to main page
-    response.sendRedirect(request.getContextPath());
+
+    String baseUrl = request.getRequestURL().substring(0, request.getRequestURL().length() - request.getRequestURI().length()) + request.getContextPath();
+    response.sendRedirect(baseUrl);
   }
 }
