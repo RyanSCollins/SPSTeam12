@@ -24,8 +24,12 @@ public class PetPostServlet extends HttpServlet {
   public static final String BREED = "breed";
   public static final String AGE = "age";
   public static final String LOCATION = "location";
-  public static final String CONTACT_INFO = "contactInfo";
-  public static final String IMAGE = "image";
+  public static final String PIC = "pic";
+  public static final String NAME = "name";
+  public static final String EMAIL = "email";
+  public static final String PHONE = "phone";
+
+
 
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -34,28 +38,33 @@ public class PetPostServlet extends HttpServlet {
     String breed = Jsoup.clean(request.getParameter(BREED), Safelist.none());
     String age = Jsoup.clean(request.getParameter(AGE), Safelist.none());
     String location = Jsoup.clean(request.getParameter(LOCATION), Safelist.none());
-    String contactInfo = Jsoup.clean(request.getParameter(CONTACT_INFO), Safelist.none()); 
-    String image = Jsoup.clean(request.getParameter(IMAGE), Safelist.none()); 
+    String pic = Jsoup.clean(request.getParameter(PIC), Safelist.none()); 
+    String name = Jsoup.clean(request.getParameter(NAME), Safelist.none()); 
+    String email = Jsoup.clean(request.getParameter(EMAIL), Safelist.none()); 
+    String phone = Jsoup.clean(request.getParameter(PHONE), Safelist.none()); 
 
-    //Convert image to blob data
-    byte[] byteData = image.getBytes();
+
+    //Convert pic to blob data
+    byte[] byteData = pic.getBytes();
     Blob blobData = Blob.copyFrom(byteData);
 
     //Save the information in the database
     Datastore datastore = DatastoreOptions.getDefaultInstance().getService();
     KeyFactory keyFactory = datastore.newKeyFactory().setKind(POST);
-    FullEntity contactEntity = 
+    FullEntity postEntity = 
     Entity.newBuilder(keyFactory.newKey()) 
         .set(PET_TYPE, petType)
         .set(BREED, breed)
         .set(AGE, age)
         .set(LOCATION, location)
-        .set(CONTACT_INFO, contactInfo)
-        .set(IMAGE, blobData)
+        .set(PIC, blobData)
+        .set(NAME, name)
+        .set(EMAIL, email)
+        .set(PHONE, phone)
         .build();
-    datastore.put(contactEntity);
+    datastore.put(postEntity);
 
     //Redirect to main page
-    response.sendRedirect("/pet/post");
+    response.sendRedirect(request.getContextPath());
   }
 }
