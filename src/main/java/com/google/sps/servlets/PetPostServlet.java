@@ -44,7 +44,7 @@ public class PetPostServlet extends HttpServlet {
     //Save the information in the database
     Datastore datastore = DatastoreOptions.getDefaultInstance().getService();
     KeyFactory keyFactory = datastore.newKeyFactory().setKind(POST);
-    FullEntity contacEntity = 
+    FullEntity contactEntity = 
     Entity.newBuilder(keyFactory.newKey()) 
         .set(PET_TYPE, petType)
         .set(BREED, breed)
@@ -53,15 +53,9 @@ public class PetPostServlet extends HttpServlet {
         .set(CONTACT_INFO, contactInfo)
         .set(IMAGE, blobData)
         .build();
-    datastore.put(contacEntity);
+    datastore.put(contactEntity);
 
     //Redirect to main page
-    response.sendRedirect("https://summer22-sps-23.appspot.com/");
-  }
-
-  @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    response.setContentType("text/html;");
-    response.getWriter().println("<h1>Hello world!</h1>");
+    response.sendRedirect("/pet/post");
   }
 }
