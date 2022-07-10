@@ -65,7 +65,7 @@
 
         <!--Sumbitting the form-->
               <div class="container ms-5">
-                <form class="form-horizontal" action="/pet/post" method="post">
+                <form class="form-horizontal" action="/pet/post" method="post" enctype="multipart/form-data">
                   <div class="row">
                     <div class="col">
                     <div class="form-group">
@@ -86,7 +86,7 @@
                     </div>
                     <div class="form-group">
                       <label class="control-label h4" for="pic">Upload a Picture:</label>
-                        <input type="image" class="form-control border border-primary" id="pic" name="pic">
+                        <input type="file" class="form-control border border-primary" id="pic" name="pic">
                     </div>
                     <div class="form-group">        
                       <div class="col-sm-offset-2 h4 pt-5">
