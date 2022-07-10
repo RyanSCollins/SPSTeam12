@@ -20,6 +20,7 @@ import com.google.cloud.datastore.Datastore;
 import com.google.cloud.datastore.DatastoreOptions;
 import com.google.cloud.datastore.KeyFactory;
 
+import org.apache.commons.io.IOUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.safety.Safelist;
 
@@ -58,8 +59,7 @@ public class PetPostServlet extends HttpServlet {
     //Get the picPart of the data
     Part pic = request.getPart(PIC);
     //Convert pic to blob data
-    String picString = getValue(pic);
-    byte[] byteData = picString.getBytes();
+    byte[] byteData = IOUtils.toByteArray(pic.getInputStream());
     Blob picBlob = Blob.copyFrom(byteData);
 
     //Save the information in the database
@@ -81,16 +81,5 @@ public class PetPostServlet extends HttpServlet {
     //Redirect to home page
     String baseUrl = request.getRequestURL().substring(0, request.getRequestURL().length() - request.getRequestURI().length()) + request.getContextPath();
     response.sendRedirect(baseUrl);
-  }
-
-  //Gets the string value of a part
-  private static String getValue(Part part) throws IOException {
-    BufferedReader reader = new BufferedReader(new InputStreamReader(part.getInputStream(), "UTF-8"));
-    StringBuilder value = new StringBuilder();
-    char[] buffer = new char[1024];
-    for (int length = 0; (length = reader.read(buffer)) > 0;) {
-      value.append(buffer, 0, length);
-    }
-    return value.toString();
   }
 }
