@@ -8,6 +8,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.cloud.datastore.Datastore;
+import com.google.cloud.datastore.DatastoreOptions;
+import com.google.cloud.datastore.Entity;
+import com.google.cloud.datastore.Query;
+import com.google.cloud.datastore.QueryResults;
+import com.google.cloud.datastore.StructuredQuery.OrderBy;
+import com.google.gson.Gson;
+import com.google.cloud.datastore.Blob;
+import java.util.ArrayList;
+import java.util.List;
+import com.google.sps.data.Post;
 
 
 @WebServlet("/home")
@@ -16,7 +27,29 @@ public class HomeServlet extends HttpServlet {
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
     response.setContentType("text/html;");
-    request.getRequestDispatcher("webapp/index.html").forward(request, response); 
-    //I'm not sure how to forward it to an HTML page in a different directory
+    request.getRequestDispatcher("../webapp/index.html").forward(request, response); 
+    
+    Datastore datastore = DatastoreOptions.getDefaultInstance().getService();
+    Query<Entity> query =
+        Query.newEntityQueryBuilder().setKind("Post").setOrderBy(OrderBy.asc("location")).build();
+    QueryResults<Entity> results = datastore.run(query);
+
+    List<Post> posts = new ArrayList<>();
+    while (results.hasNext()) {
+      Entity entity = results.next();
+      String petType = entity.getString("PET_TYPE");
+      String breed = entity.getString("BREED");
+      String age = entity.getString("AGE");
+      String location = entity.getString("LOCATION");
+      String contactInfo = entity.getString("CONTACT_INFO");
+      String image = entity.getString("IMAGE");
+
+      Post post = new Post(petType, breed, age, location, contactInfo, image);
+      posts.add(post);
+    }
+
+    Gson gson = new Gson();
+    response.setContentType("application/json;");
+    response.getWriter().println(gson.toJson(posts));
   }
 }
