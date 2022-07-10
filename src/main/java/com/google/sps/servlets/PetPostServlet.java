@@ -83,7 +83,7 @@ public class PetPostServlet extends HttpServlet {
     response.sendRedirect(baseUrl);
   }
 
-  //Gets the strign value of a part
+  //Gets the string value of a part
   private static String getValue(Part part) throws IOException {
     BufferedReader reader = new BufferedReader(new InputStreamReader(part.getInputStream(), "UTF-8"));
     StringBuilder value = new StringBuilder();
