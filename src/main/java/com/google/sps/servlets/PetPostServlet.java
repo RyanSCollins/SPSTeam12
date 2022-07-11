@@ -1,8 +1,7 @@
 package com.google.sps.servlets;
 
 import java.io.IOException;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+import java.util.Base64;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,11 +13,10 @@ import javax.servlet.http.Part;
 
 import com.google.cloud.datastore.Entity;
 import com.google.cloud.datastore.FullEntity;
-import com.google.cloud.datastore.Blob;
-import com.google.cloud.datastore.BlobValue;
 import com.google.cloud.datastore.Datastore;
 import com.google.cloud.datastore.DatastoreOptions;
 import com.google.cloud.datastore.KeyFactory;
+import com.google.cloud.datastore.StringValue;
 
 import org.apache.commons.io.IOUtils;
 import org.jsoup.Jsoup;
@@ -60,7 +58,7 @@ public class PetPostServlet extends HttpServlet {
     Part pic = request.getPart(PIC);
     //Convert pic to blob data
     byte[] byteData = IOUtils.toByteArray(pic.getInputStream());
-    Blob picBlob = Blob.copyFrom(byteData);
+    String picBase64 = Base64.getEncoder().encodeToString(byteData);
 
     //Save the information in the database
     Datastore datastore = DatastoreOptions.getDefaultInstance().getService();
@@ -71,7 +69,7 @@ public class PetPostServlet extends HttpServlet {
         .set(BREED, breed)
         .set(AGE, age)
         .set(LOCATION, location)
-        .set(PIC, BlobValue.newBuilder(picBlob).setExcludeFromIndexes(true).build())
+        .set(PIC, StringValue.newBuilder(picBase64).setExcludeFromIndexes(true).build())
         .set(NAME, name)
         .set(EMAIL, email)
         .set(PHONE, phone)
