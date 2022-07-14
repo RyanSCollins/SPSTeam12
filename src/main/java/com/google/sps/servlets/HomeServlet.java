@@ -15,9 +15,10 @@ import com.google.cloud.datastore.Query;
 import com.google.cloud.datastore.QueryResults;
 import com.google.cloud.datastore.StructuredQuery.OrderBy;
 import com.google.gson.Gson;
-import com.google.cloud.datastore.Blob;
+import com.google.cloud.datastore.StringValue;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Base64;
 import com.google.sps.data.Post;
 
 
@@ -37,16 +38,17 @@ public class HomeServlet extends HttpServlet {
     List<Post> posts = new ArrayList<>();
     while (results.hasNext()) {
       Entity entity = results.next();
-      String petType = entity.getString("PET_TYPE");
       String breed = entity.getString("BREED");
       String age = entity.getString("AGE");
       String location = entity.getString("LOCATION");
-      String contactInfo = entity.getString("CONTACT_INFO");
-      String image = entity.getString("IMAGE");
-
-      Post post = new Post(petType, breed, age, location, contactInfo, image);
+      String name = entity.getString("NAME");
+      String email = entity.getString("EMAIL");
+      String phone = entity.getString("PHONE");
+      String image = entity.getString("PIC");
+      Post post = new Post(breed, age, location, name, email, phone, image);
       posts.add(post);
     }
+
 
     Gson gson = new Gson();
     response.setContentType("application/json;");
