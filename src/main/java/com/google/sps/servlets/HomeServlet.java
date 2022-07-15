@@ -17,6 +17,7 @@ import com.google.cloud.datastore.StructuredQuery.OrderBy;
 import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.List;
+import com.google.sps.data.PostEntity;
 import com.google.sps.data.Post;
 
 
@@ -30,20 +31,20 @@ public class HomeServlet extends HttpServlet {
     
     Datastore datastore = DatastoreOptions.getDefaultInstance().getService();
     Query<Entity> query =
-        Query.newEntityQueryBuilder().setKind("post").setOrderBy(OrderBy.asc("location")).build();
+        Query.newEntityQueryBuilder().setKind(PostEntity.POST).setOrderBy(OrderBy.asc(PostEntity.LOCATION)).build();
     QueryResults<Entity> results = datastore.run(query);
 
     List<Post> posts = new ArrayList<>();
     while (results.hasNext()) {
       Entity entity = results.next();
-      String petType = entity.getString("petType");
-      String breed = entity.getString("breed");
-      String age = entity.getString("age");
-      String location = entity.getString("location");
-      String name = entity.getString("name");
-      String email = entity.getString("email");
-      String phone = entity.getString("phone");
-      String pic = entity.getString("pic");
+      String petType = entity.getString(PostEntity.PET_TYPE);
+      String breed = entity.getString(PostEntity.BREED);
+      String age = entity.getString(PostEntity.AGE);
+      String location = entity.getString(PostEntity.LOCATION);
+      String name = entity.getString(PostEntity.NAME);
+      String email = entity.getString(PostEntity.EMAIL);
+      String phone = entity.getString(PostEntity.PHONE);
+      String pic = entity.getString(PostEntity.PIC);
 
       Post post = new Post(petType, breed, age, location, name, email, phone, pic);
       posts.add(post);
