@@ -27,6 +27,12 @@
       <version>4.0.1</version>
     </dependency>
 
+    <!-- Apache commons io -->
+    <dependency>
+        <groupId>commons-io</groupId>
+        <artifactId>commons-io</artifactId>
+        <version>2.11.0</version>
+    </dependency>
     <!-- Jetty -->
     <dependency>
       <groupId>org.eclipse.jetty</groupId>
@@ -116,7 +122,7 @@
         <artifactId>appengine-maven-plugin</artifactId>
         <version>2.2.0</version>
         <configuration>
-          <projectId>${googleCloudProjectId}</projectId>
+          <projectId>summer22-sps-12</projectId>
           <version>1</version>
         </configuration>
       </plugin>
