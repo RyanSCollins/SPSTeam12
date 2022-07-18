@@ -1,29 +1,230 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <title>TEAM-23 PROJECT</title>
-    <link rel="stylesheet" href="style.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link href="styles.css" rel="stylesheet"> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" >
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+    <title>Pet Connect</title>
+    <style>
+        section{
+            padding: 60px 0;
+        }
+    </style>
     <script src="script.js"></script>
-  </head>
-  <body>
-    <header>
-      <div class="navbar">
-        <a href="#">TITLE</a>
-        <a href="#">HOME</a>
-        <a href="#">LINK2</a>
-        <a href="#">LINK3</a>
-        <div class="search-container">
-          <form action="#">
-            <input type="text" placeholder="Search.." name="search" />
-            <button type="submit"><i class="fa fa-search"></i></button>
-          </form>
+</head>
+
+<body>
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-md navbar-dark bg-primary"> 
+        <div class="container-xxl">
+            <a href="#intro" class="navbar-brand">
+                <span class="fw-bold text-white h2">
+                    Pet Connect
+                    <i class="bi bi-house-heart-fill text-white"></i>
+                </span>
+            </a>
+            <!-- toggle button for mobile nav -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#main-nav" aria-controls="main-nav" aria-expanded="false"
+            aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- navbar links -->
+            <div class="collapse navbar-collapse justify-content-end align-center" id="main-nav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger text-white" href="#about" onclick="showPets();">View Pets</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger text-white" href="#listapet">List a Pet</a></li>
+                </ul>
+            </div>
         </div>
-      </div>
-    </header>
-  </body>
+    </nav>
+
+    <!-- picture and intro -->
+    <section class="about bg-light">
+        <div class="container-lg row">
+            
+            <div class="col-8 justify-content-top">
+                <!--Top text-->
+                <div class="text-center">
+                    <div class="ps-5">
+                        <h4 class="ps-5 display-3 text-dark fw-bold">Your Furry Friend Awaits</h4>
+                        <p class="ps-5 h3 my-4 text-primary fw-bold">Find a pet in need of a loving new home today.</p>
+                    </div>
+                </div> 
+                
+                <!--Enter location bar-->
+                <div class="ps-5 bg-none">
+                    <div class="input-group-lg mb-4 border bg-none rounded-pill ps-5 mt-5 col-11">
+                        <!-- <input type="search" placeholder="Enter your location to find pets near you" aria-describedby="button-addon3" class="form-control justify-content-center align-items-center bg-primary border-0"> -->
+                        <span class="input-group-append input-group-text border-0 bg-none">
+                            <input type="search" placeholder="Enter your location to find pets near you" aria-describedby="button-addon3" class="form-control justify-content-center align-items-center bg-none border-0">
+
+                            <button id="button-addon3" type="button" class="btn btn-link bg-none text-success"> <i class="bi bi-search bg-none text-primary fw-bold text-lg"></i></button>
+                        </span>
+                    </div>
+                </div>
+                
+                    
+                <!--Bottom text-->
+                <div class="text-center">
+                    <p class="lead my-4 text-muted">Have a pet that needs a home? 
+                        <a class="nav-link js-scroll-trigger " href="#listapet">Click here</a> to have it listed.
+                    </p>
+                </div>
+            </div>
+
+            <div class="bg-image float-right col-4"> <!--img only shows on md+ screens, not small-->
+                <img class="bg-image img-fluid float-right" src="images/home_final.png" alt="ebook cover">
+            </div>
+        </div>
+    </section>
+
+    <section class="recently-listed" id="about">
+        <div class="container-lg">
+            <div class="text-center">
+                <h1 class="display-1-bold text-primary">Listed Pets:</h1>
+                <p class="lead text-dark">Is one of these cute new pets just the friend you're looking for?</p>
+            </div>
+            <div class="row align-items-center justify-content-center my-5">
+                <div class="col-10 col-lg-4 col-xl-3">
+                    <div class="card">
+                        <div class="card border-primary">
+                            <img class="card-img-top" src="images/pc_cat.jpg" alt="pet_listing_photo" id="pic0">
+                            <div class="card-body">
+                                <h4 class="card-title" id="petType0">Pet Type</h4>
+                                <p class="card-text text-muted" id="breed0">Breed</p>
+                                <p class="card-text text-muted" id="age0">Age</p>
+                                <p class="card-text text-muted" id="location0">Location</p>
+                                <p class="card-text text-muted" id ="name0">Name</p>
+                                <p class="card-text text-muted" id ="email0">Email</p>
+                                <div class="text-center">
+                                </div>
+                            </div>
+                        </div> 
+                    </div>
+                </div>
+                    
+                <div class="col-10 col-lg-4 col-xl-3">
+                    <div class="card">
+                        <div class="card border-primary">
+                            <img class="card-img-top" src="images/pc_rabbit.jpg" alt="pet_listing_photo" id="pic1">
+                            <div class="card-body">
+                                <h4 class="card-title" id="petType1">Pet Type</h4>
+                                <p class="card-text text-muted" id="breed1">Breed</p>
+                                <p class="card-text text-muted" id="age1">Age</p>
+                                <p class="card-text text-muted" id="location1">Location</p>
+                                <p class="card-text text-muted" id ="name1">Name</p>
+                                <p class="card-text text-muted" id ="email1">Email</p>
+                                <div class="text-center">
+                                </div>
+                                
+                            </div>
+                        </div> 
+                    </div>
+                </div>
+
+                <div class="col-10 col-lg-4 col-xl-3">
+                    <div class="card">
+                        <div class="card border-primary">
+                            <img class="card-img-top" src="images/pc_dog.jpg" alt="pet_listing_photo" id="pic2">
+                            <div class="card-body">
+                                <h4 class="card-title" id="petType2">Pet Type</h4>
+                                <p class="card-text text-muted" id="breed2">Breed</p>
+                                <p class="card-text text-muted" id="age2">Age</p>
+                                <p class="card-text text-muted" id="location2">Location</p>
+                                <p class="card-text text-muted" id ="name2">Name</p>
+                                <p class="card-text text-muted" id ="email2">Email</p>
+                                <div class="text-center">
+                                </div>
+                            </div>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+        <div class="container-lg">
+            <div class="text-center">
+                <h2 class="display-1-bold text-primary">Find a Loving New Home for Your Pet</h2>
+                <p class="lead text-dark">List your pet on Pet Connect today!</p>
+            </div>
+        </div>
+
+    <!-- picture and intro -->
+    <section class="about bg-light" id="listapet">
+        <div class="container-lg row">
+            
+            <div class="justify-content-top">
+                <!--Top text-->
+                <div class="text-center">
+                    <div class="ps-5">
+                        <h4 class="ps-5 display-3 text-dark fw-bold">List Your Pet!</h4>
+                        <p class="ps-5 h3 my-4 text-primary fw-bold">Help your pet find a loving new home today.</p>
+                    </div>
+                </div> 
+  
+          <!--Sumbitting the form-->
+                <div class="container ms-5">
+                  <form class="form-horizontal" action="/pet/post" method="post" enctype="multipart/form-data">
+                    <div class="row">
+                      <div class="col">
+                      <div class="form-group">
+                        <label class="control-label h4" for="petType">Type of Pet:</label>
+                          <input type="text" class="form-control border border-primary" id="petType" name="petType">
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label h4" for="breed">Breed:</label>
+                          <input type="text" class="form-control border border-primary" id="breed" name="breed">
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label h4" for="age">Age:</label>       
+                          <input type="number" class="form-control border border-primary" id="age" name="age">
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label h4" for="location">Location:</label>      
+                          <input type="text " class="form-control border border-primary" id="location" name="location">
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label h4" for="pic">Upload a Picture:</label>
+                          <input type="file" class="form-control border border-primary" id="pic" name="pic">
+                      </div>
+                      <div class="form-group">        
+                        <div class="col-sm-offset-2 h4 pt-5">
+                          <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                      </div>
+                      </div>
+                      <div class="col ms-5 "> 
+                        <div class="border border-primary border-3 rounded ps-2 pt-2 pb-5">
+                          <div class="h2 mt-4">Contact Info:</div>
+                          <div class="form-group">
+                          <div class="form-floating mb-3 me-3 mt-3">
+                            <input type="text" class="form-control" id="name" placeholder="Enter First and Last Name" name="name">
+                            <label for="name">Name</label>
+                          </div>
+                          <div class="form-floating mt-3 me-3 mb-3">
+                            <input type="text" class="form-control" id="email" placeholder="Enter Email" name="email">
+                            <label for="email">Email</label>
+                          </div>
+                          <div class="form-floating mt-3 me-3 mb-4">
+                            <input type="tel" class="form-control" id="phone" placeholder="Enter Phone Number" name="phone">
+                            <label for="phone">Phone Number</label>
+                          </div>
+                        </div>
+                      </div>
+                      </div>
+                    </div>
+                    </form>
+                  </div>
+            </div>
+          </div>
+          </section>
+
+</body>
 </html>
