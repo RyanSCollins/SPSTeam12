@@ -29,11 +29,11 @@ async function showPets() {
         //Update each card in the HTML
         document.getElementById(picID).src = "data:imagejpeg;base64," + textFromResponse[i].PIC;
         document.getElementById(petTypeID).innerHTML = textFromResponse[i].PET_TYPE;
-        document.getElementById(breedID).innerHTML = textFromResponse[i].BREED;
-        document.getElementById(ageID).innerHTML = textFromResponse[i].AGE;
-        document.getElementById(locationID).innerHTML = textFromResponse[i].LOCATION;
-        document.getElementById(nameID).innerHTML = textFromResponse[i].NAME;
-        document.getElementById(emailID).innerHTML = textFromResponse[i].EMAIL;
+        document.getElementById(breedID).innerHTML = "Breed: " + textFromResponse[i].BREED;
+        document.getElementById(ageID).innerHTML = "Age: " + textFromResponse[i].AGE;
+        document.getElementById(locationID).innerHTML = "Location: " + textFromResponse[i].LOCATION;
+        document.getElementById(nameID).innerHTML = "Name: " + textFromResponse[i].NAME;
+        document.getElementById(emailID).innerHTML = "Email: " + textFromResponse[i].EMAIL;
 
     }
 }
