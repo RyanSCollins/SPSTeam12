@@ -67,7 +67,7 @@ textarea {
     margin-left: 1100px;
   }
 
-  .box{
+.box{
     float: left;
     width: 400px;
     height: 300px;
@@ -77,5 +77,5 @@ textarea {
     margin-left: 800px;
     position: fixed;
     White-space: wrap;
-    }
+  }
 
