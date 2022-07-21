@@ -160,7 +160,7 @@
                 <div class="container">
                   <form class="form-horizontal" action="/pet/post" method="post" enctype="multipart/form-data">
                     <div class="row">
-                      <div class="col">
+                      <div class="col-sm mb-3">
                       <div class="form-group">
                         <label class="control-label h4" for="petType">Type of Pet:</label>
                           <input type="text" class="form-control border border-primary" id="petType" name="petType">
@@ -181,13 +181,8 @@
                         <label class="control-label h4" for="pic">Upload a Picture:</label>
                           <input type="file" class="form-control border border-primary" id="pic" name="pic">
                       </div>
-                      <div class="form-group">        
-                        <div class="col-sm-offset-2 h4 pt-5">
-                          <button type="submit" class="btn btn-primary">Submit</button>
-                        </div>
                       </div>
-                      </div>
-                      <div class="col ms-5 "> 
+                      <div class="col-sm"> 
                         <div class="border border-primary border-3 rounded ps-2 pt-2 pb-5">
                           <div class="h2 mt-4">Contact Info:</div>
                           <div class="form-group">
@@ -207,6 +202,11 @@
                       </div>
                       </div>
                     </div>
+                    <div class="form-group">        
+                        <div class="col-sm-offset-2 h4 pt-3">
+                          <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                      </div>
                     </form>
                   </div>
             </div>
