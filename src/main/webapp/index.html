@@ -8,6 +8,7 @@
     <link rel="icon" type="image/x-icon" href="/images/favicon.jpg">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" >
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <title>Pet Connect</title>
     <style>
         section{
@@ -18,24 +19,22 @@
 </head>
 
 <body>
-    <!-- navbar -->
+
+<!--navbar-->
+
     <nav class="navbar navbar-expand-md navbar-dark bg-primary"> 
-        <div class="container-xxl">
+        <div class="container-fluid">
             <a href="#intro" class="navbar-brand">
                 <span class="fw-bold text-white h2">
                     Pet Connect
                     <i class="bi bi-house-heart-fill text-white"></i>
                 </span>
             </a>
-            <!-- toggle button for mobile nav -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-            data-bs-target="#main-nav" aria-controls="main-nav" aria-expanded="false"
-            aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
                 <span class="navbar-toggler-icon"></span>
-            </button>
+              </button>
 
-            <!-- navbar links -->
-            <div class="collapse navbar-collapse justify-content-end align-center" id="main-nav">
+            <div class="collapse navbar-collapse justify-content-end align-center" id="collapsibleNavbar">
                 <ul class="navbar-nav">
                     <li class="nav-item"><a class="nav-link js-scroll-trigger text-white" href="#about" onclick="showPets();">View Pets</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger text-white" href="#listapet">List a Pet</a></li>
@@ -56,18 +55,6 @@
                         <p class="ps-5 h3 my-4 text-primary fw-bold">Find a pet in need of a loving new home today.</p>
                     </div>
                 </div> 
-                
-                <!--Enter location bar-->
-                <div class="ps-5 bg-none">
-                    <div class="input-group-lg mb-4 border bg-none rounded-pill ps-5 mt-5 col-11">
-                        <!-- <input type="search" placeholder="Enter your location to find pets near you" aria-describedby="button-addon3" class="form-control justify-content-center align-items-center bg-primary border-0"> -->
-                        <span class="input-group-append input-group-text border-0 bg-none">
-                            <input type="search" placeholder="Enter your location to find pets near you" aria-describedby="button-addon3" class="form-control justify-content-center align-items-center bg-none border-0">
-
-                            <button id="button-addon3" type="button" class="btn btn-link bg-none text-success"> <i class="bi bi-search bg-none text-primary fw-bold text-lg"></i></button>
-                        </span>
-                    </div>
-                </div>
                 
                     
                 <!--Bottom text-->
