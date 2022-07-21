@@ -45,9 +45,11 @@ public class PetPostServlet extends HttpServlet {
 
     //Get the picPart of the data
     Part pic = request.getPart(PostEntity.PIC);
-    //Convert pic to blob data
+    //Convert pic to base 64 string
     byte[] byteData = IOUtils.toByteArray(pic.getInputStream());
     String picBase64 = Base64.getEncoder().encodeToString(byteData);
+    //Get the timestamp of post
+    long timestamp = System.currentTimeMillis();
 
     //Save the information in the database
     Datastore datastore = DatastoreOptions.getDefaultInstance().getService();
@@ -62,6 +64,7 @@ public class PetPostServlet extends HttpServlet {
         .set(PostEntity.NAME, name)
         .set(PostEntity.EMAIL, email)
         .set(PostEntity.PHONE, phone)
+        .set(PostEntity.TIMESTAMP, timestamp)
         .build();
     datastore.put(postEntity);
 

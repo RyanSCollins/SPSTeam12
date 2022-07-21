@@ -31,7 +31,7 @@ public class HomeServlet extends HttpServlet {
     
     Datastore datastore = DatastoreOptions.getDefaultInstance().getService();
     Query<Entity> query =
-        Query.newEntityQueryBuilder().setKind(PostEntity.POST).setOrderBy(OrderBy.asc(PostEntity.LOCATION)).build();
+        Query.newEntityQueryBuilder().setKind(PostEntity.POST).setOrderBy(OrderBy.desc(PostEntity.TIMESTAMP)).build();
     QueryResults<Entity> results = datastore.run(query);
 
     List<Post> posts = new ArrayList<>();
